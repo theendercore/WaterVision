@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "id": "modid",
+  "version": "${version}",
+
+  "name": "ModId",
+  "description": "Writen by end!",
+  "authors": [
+    "Ender"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+
+  "license": "MIT",
+  "icon": "assets/modid/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      {
+        "adapter": "kotlin",
+        "value": "org.teamvoided.modid.ModIdKt::onInitialize"
+      }
+    ]
+  },
+  "mixins": [
+    "modid.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.14.12",
+    "fabric": "*",
+    "minecraft": "1.20.x",
+    "java": ">=17",
+    "fabric-language-kotlin": ">=1.9.6+kotlin.1.8.22"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
