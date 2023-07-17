@@ -4,13 +4,13 @@
   "version": "${version}",
 
   "name": "Water Vision",
-  "description": "See in water!",
+  "description": "See Better Under da Water!",
   "authors": [
     "Ender"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://theendercore.github.io/",
+    "sources": "https://github.com/theendercore/WaterVision"
   },
 
   "license": "MIT",
@@ -37,6 +37,7 @@
     "fabric": "*",
     "minecraft": "1.20.x",
     "java": ">=17",
+    "yet_another_config_lib_v3": ">=3.0.0-",
     "fabric-language-kotlin": ">=1.9.6+kotlin.1.8.22"
   },
   "suggests": {
