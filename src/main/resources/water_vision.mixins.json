@@ -1,12 +1,13 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "org.teamvoided.modid.mixin",
+  "package": "com.theendercore.water_vision.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
   ],
   "client": [
-    "ExampleMixin"
+    "BackgroundRendererMixin",
+    "LightmapTextureManagerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

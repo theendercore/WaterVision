@@ -3,8 +3,8 @@
   "id": "modid",
   "version": "${version}",
 
-  "name": "ModId",
-  "description": "Writen by end!",
+  "name": "water_vision",
+  "description": "See in water!",
   "authors": [
     "Ender"
   ],
@@ -14,19 +14,19 @@
   },
 
   "license": "MIT",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/water_vision/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
       {
         "adapter": "kotlin",
-        "value": "org.teamvoided.modid.ModIdKt::onInitialize"
+        "value": "com.theendercore.water_vision.WaterVisionKt::onInitialize"
       }
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "water_vision.mixins.json"
   ],
 
   "depends": {
