@@ -3,7 +3,7 @@
   "id": "modid",
   "version": "${version}",
 
-  "name": "water_vision",
+  "name": "Water Vision",
   "description": "See in water!",
   "authors": [
     "Ender"
@@ -23,6 +23,9 @@
         "adapter": "kotlin",
         "value": "com.theendercore.water_vision.WaterVisionKt::onInitialize"
       }
+    ],
+    "modmenu": [
+      "com.theendercore.water_vision.config.ModMenuCompat"
     ]
   },
   "mixins": [

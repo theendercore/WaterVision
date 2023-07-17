@@ -1,6 +1,5 @@
 package com.theendercore.water_vision.mixin;
 
-import com.theendercore.water_vision.ConfigData;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.render.GameRenderer;
@@ -40,8 +39,7 @@ public class LightmapTextureManagerMixin {
 
     @Inject(at = @At("HEAD"), method = "update", cancellable = true)
     public void update(float delta, CallbackInfo ci) {
-        final ConfigData c = config().getConfig();
-        if (this.dirty && c.enable) {
+        if (this.dirty && config().enable) {
             ClientWorld clientWorld = this.client.world;
             ClientPlayerEntity player = this.client.player;
             if (clientWorld != null && player != null && player.isSubmergedInWater()) {

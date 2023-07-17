@@ -11,7 +11,14 @@ base.archivesName.set(property("archives_base_name") as String)
 group = property("maven_group")!!
 version = property("mod_version")!!
 
-repositories {}
+repositories {
+    maven {
+        name = "Xander Maven"
+        url = uri("https://maven.isxander.dev/releases")
+    }
+    maven { url = uri("https://maven.terraformersmc.com/") }
+
+}
 
 dependencies {
     minecraft("com.mojang:minecraft:${property("minecraft_version")}")
@@ -22,6 +29,10 @@ dependencies {
     modImplementation("net.fabricmc.fabric-api:fabric-api:${property("fabric_api_version")}")
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
+
+    modImplementation("dev.isxander.yacl:yet-another-config-lib-fabric:${property("yacl")}")
+
+
 }
 
 tasks {
