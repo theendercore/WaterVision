@@ -111,7 +111,7 @@ class WaterVisionConfig {
                                             { config.transitionLeaveMultiplier },
                                             { config.transitionLeaveMultiplier = it }
                                         )
-                                        .controller { IntegerFieldControllerBuilder.create(it).min(1).max(8) }
+                                        .controller { IntegerFieldControllerBuilder.create(it).min(1).max(32) }
                                         .build(),
 
                                 )
