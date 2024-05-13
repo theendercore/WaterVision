@@ -36,8 +36,8 @@ modSettings {
 //    entrypoint("main", "com.theendercore.water_vision.Template::commonInit")
     entrypoint("client", "com.theendercore.water_vision.WaterVision::clientInit")
     entrypoint("modmenu", "com.theendercore.water_vision.config.ModMenuCompat")
-    mixinFile("$modid.mixins.json")
     dependency("yet_another_config_lib_v3", "*")
+    mixinFile("$modid.mixins.json")
 
     accessWidener("$modid.accesswidener")
 }
@@ -61,7 +61,7 @@ loom {
 }
 
 tasks {
-    val targetJavaVersion = 21
+    val targetJavaVersion = 17
     withType<JavaCompile> {
         options.encoding = "UTF-8"
         options.release.set(targetJavaVersion)

@@ -4,9 +4,9 @@ githubRepo = "theendercore/WaterVision"
 discordServerInviteId = "KZ5Q364hEg"
 authors = [ "TheEnderCore" ]
 majorMinecraftVersion = "1.20"
-minecraftVersion = "1.20.6"
+minecraftVersion = "1.20.1"
 fabricLoaderVersion = "0.15.11"
-fabricApiVersion = "0.98.0+1.20.6"
+fabricApiVersion = "0.92.1+1.20.1"
 fabricLangKotlinVersion = "1.10.19+kotlin.1.9.23"
 license = "MIT"
 modules = [  ]
@@ -21,4 +21,4 @@ modules = [  ]
     # MOJYARN: Yarn layered on top of the official Mojang mappings
     # CUSTOM: Custom mapping jar. Uses mappings version as file location
     type = "QUILT"
-    version = "1.20.6+build.6"
+    version = "1.20.1+build.3"
