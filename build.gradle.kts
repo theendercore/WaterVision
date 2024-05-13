@@ -1,76 +1,100 @@
-plugins {
-    kotlin("jvm")
-    kotlin("plugin.serialization") version embeddedKotlinVersion
-    id("fabric-loom")
-    `maven-publish`
-    java
-}
+@file:Suppress("PropertyName", "VariableNaming")
 
-base.archivesName.set(property("archives_base_name") as String)
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
+
+plugins {
+    alias(libs.plugins.fabric.loom)
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.kotlinx.serialization)
+    alias(libs.plugins.iridium)
+    alias(libs.plugins.iridium.publish)
+    alias(libs.plugins.iridium.upload)
+}
 
 group = property("maven_group")!!
 version = property("mod_version")!!
+base.archivesName.set(property("archives_base_name") as String)
+description = property("description") as String
+
+val modid: String by project
+val mod_name: String by project
+val modrinth_id: String? by project
+val curse_id: String? by project
 
 repositories {
-    maven {
-        name = "Xander Maven"
-        url = uri("https://maven.isxander.dev/releases")
-    }
-    maven { url = uri("https://maven.terraformersmc.com/") }
+    maven("https://teamvoided.org/releases")
+    maven("https://maven.isxander.dev/releases") { name = "Xander Maven" }
+    maven("https://maven.terraformersmc.com/") { name = "Terraformers" }
+    mavenCentral()
+}
 
+modSettings {
+    modId(modid)
+    modName(mod_name)
+
+//    entrypoint("main", "com.theendercore.water_vision.Template::commonInit")
+    entrypoint("client", "com.theendercore.water_vision.WaterVision::clientInit")
+    entrypoint("modmenu", "com.theendercore.water_vision.config.ModMenuCompat")
+    mixinFile("$modid.mixins.json")
+    dependency("yet_another_config_lib_v3", "*")
+
+    accessWidener("$modid.accesswidener")
 }
 
 dependencies {
-    minecraft("com.mojang:minecraft:${property("minecraft_version")}")
-    mappings("net.fabricmc:yarn:${property("yarn_mappings")}:v2")
-    modImplementation("net.fabricmc:fabric-loader:${property("loader_version")}")
+    modImplementation(fileTree("libs"))
+    modImplementation(libs.yacl)
+    modImplementation(libs.modmenu)
 
-    modImplementation("net.fabricmc:fabric-language-kotlin:${property("fabric_kotlin_version")}")
-    modImplementation("net.fabricmc.fabric-api:fabric-api:${property("fabric_api_version")}")
+}
 
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
-
-    modImplementation("dev.isxander.yacl:yet-another-config-lib-fabric:${property("yacl")}")
-
-
+loom {
+    runs {
+        create("TestWorld") {
+            client()
+            ideConfigGenerated(true)
+            runDir("run")
+            programArgs("--quickPlaySingleplayer", "test")
+        }
+    }
 }
 
 tasks {
-
-    processResources {
-        inputs.property("version", project.version)
-        filesMatching("fabric.mod.json") {
-            expand(mutableMapOf("version" to project.version))
-        }
+    val targetJavaVersion = 21
+    withType<JavaCompile> {
+        options.encoding = "UTF-8"
+        options.release.set(targetJavaVersion)
     }
 
-    jar {
-        from("LICENSE")
+    withType<KotlinCompile> {
+        kotlinOptions.jvmTarget = targetJavaVersion.toString()
     }
 
-    publishing {
-        publications {
-            create<MavenPublication>("mavenJava") {
-                artifact(remapJar) {
-                    builtBy(remapJar)
-                }
-                artifact(kotlinSourcesJar) {
-                    builtBy(remapSourcesJar)
-                }
-            }
-        }
-
-        repositories {}
-    }
-
-    compileKotlin {
-        kotlinOptions.jvmTarget = "17"
+    java {
+        toolchain.languageVersion.set(JavaLanguageVersion.of(JavaVersion.toVersion(targetJavaVersion).toString()))
+        withSourcesJar()
     }
 }
 
-java {
-    withSourcesJar()
+publishScript {
+    releaseRepository("TeamVoided", "https://maven.teamvoided.org/releases")
+    publication(modSettings.modId(), false)
+    publishSources(true)
+}
 
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+uploadConfig {
+//    debugMode = true
+    modrinthId = modrinth_id
+    curseId = curse_id
+
+    // FabricApi
+    modrinthDependency("P7dR8mSH", uploadConfig.REQUIRED)
+    curseDependency("fabric-api", uploadConfig.REQUIRED)
+    // Fabric Language Kotlin
+    modrinthDependency("Ha28R6CL", uploadConfig.REQUIRED)
+    curseDependency("fabric-language-kotlin", uploadConfig.REQUIRED)
+    //YACL
+    modrinthDependency("1eAoo2KR", uploadConfig.REQUIRED)
+    curseDependency("yacl", uploadConfig.REQUIRED)
 }

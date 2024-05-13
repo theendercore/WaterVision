@@ -5,19 +5,18 @@ import net.minecraft.util.Identifier
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
-const val MODID = "water_vision"
-
-@JvmField
-val LOGGER: Logger = LoggerFactory.getLogger(MODID)
-
 @Suppress("unused")
-fun id(path: String): Identifier = Identifier(MODID, path)
+object WaterVision {
+    const val MODID = "water_vision"
 
+    @JvmField
+    val LOGGER: Logger = LoggerFactory.getLogger(MODID)
 
+    fun clientInit() {
+        LOGGER.info("Water Blub Blub")
+    }
 
-@Suppress("unused")
-fun onInitialize() {
-    LOGGER.info("Water Blub Blub")
+    fun id(path: String): Identifier = Identifier(MODID, path)
+    @JvmStatic
+    fun config(): WaterVisionConfig = WaterVisionConfig.INSTANCE.instance()
 }
-
-fun config(): WaterVisionConfig = WaterVisionConfig.INSTANCE.config
