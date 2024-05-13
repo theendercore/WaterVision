@@ -88,6 +88,8 @@ uploadConfig {
     modrinthId = modrinth_id
     curseId = curse_id
 
+    changeLog = "- 1.20.6 version of 1.1.0"
+
     // FabricApi
     modrinthDependency("P7dR8mSH", uploadConfig.REQUIRED)
     curseDependency("fabric-api", uploadConfig.REQUIRED)
