@@ -1,7 +1,13 @@
 {
   "config.water_vision.title": "Water Vision Config",
   "config.water_vision.category": "Water Vision",
-  "config.water_vision.enable": "Enable",
-  "config.water_vision.scale_close": "Fog Start Value",
-  "config.water_vision.scale_far": "Fog End Value"
+  "config.water_vision.enable": "Enable Mod",
+  "config.water_vision.scale.close": "Fog Start Value",
+  "config.water_vision.scale.far": "Fog End Value",
+  "config.water_vision.transition.enable": "Enable Transition",
+  "config.water_vision.transition.enable.description": "Enables the transition effect for entering / leaving water",
+  "config.water_vision.transition.multiplier": "Transition Multiplier",
+  "config.water_vision.transition.multiplier.description": "How fast should the transition effect be applied. Smaller number is faster.",
+  "config.water_vision.transition.leave.multiplier": "Leave Transition Multiplier",
+  "config.water_vision.transition.leave.multiplier.description": "How fast should the transition effect be applied when leaving water. Smaller number is slower."
 }
