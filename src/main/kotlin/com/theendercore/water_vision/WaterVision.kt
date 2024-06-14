@@ -16,7 +16,7 @@ object WaterVision {
         LOGGER.info("Water Blub Blub")
     }
 
-    fun id(path: String): Identifier = Identifier(MODID, path)
+    fun id(path: String): Identifier = Identifier.of(MODID, path)
     @JvmStatic
     fun config(): WaterVisionConfig = WaterVisionConfig.INSTANCE.instance()
 }

@@ -3,13 +3,17 @@ modId = "water_vision"
 githubRepo = "theendercore/WaterVision"
 discordServerInviteId = "KZ5Q364hEg"
 authors = [ "TheEnderCore" ]
-majorMinecraftVersion = "1.20"
-minecraftVersion = "1.20.6"
+majorMinecraftVersion = "1.21"
+minecraftVersion = "1.21"
 fabricLoaderVersion = "0.15.11"
-fabricApiVersion = "0.98.0+1.20.6"
-fabricLangKotlinVersion = "1.10.19+kotlin.1.9.23"
+fabricApiVersion = "0.100.1+1.21"
+fabricLangKotlinVersion = "1.11.0+kotlin.2.0.0"
 license = "MIT"
-modules = [  ]
+modules = [ ]
+modDescription = "See Better Under da Water!"
+# Modmenu badges, values can be: [ library, deprecated ]
+badges = [ ]
+disableKotlin = false
 
 [mappings]
     # You have 7 mapping types
@@ -21,4 +25,4 @@ modules = [  ]
     # MOJYARN: Yarn layered on top of the official Mojang mappings
     # CUSTOM: Custom mapping jar. Uses mappings version as file location
     type = "QUILT"
-    version = "1.20.6+build.6"
+    version = "1.21+build.2"

@@ -1,5 +1,6 @@
 @file:Suppress("PropertyName", "VariableNaming")
 
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 
@@ -14,11 +15,8 @@ plugins {
 
 group = property("maven_group")!!
 version = property("mod_version")!!
-base.archivesName.set(property("archives_base_name") as String)
-description = property("description") as String
+base.archivesName.set(modSettings.modId())
 
-val modid: String by project
-val mod_name: String by project
 val modrinth_id: String? by project
 val curse_id: String? by project
 
@@ -30,16 +28,12 @@ repositories {
 }
 
 modSettings {
-    modId(modid)
-    modName(mod_name)
-
-//    entrypoint("main", "com.theendercore.water_vision.Template::commonInit")
     entrypoint("client", "com.theendercore.water_vision.WaterVision::clientInit")
     entrypoint("modmenu", "com.theendercore.water_vision.config.ModMenuCompat")
-    mixinFile("$modid.mixins.json")
+    mixinFile("${modId()}.mixins.json")
     dependency("yet_another_config_lib_v3", "*")
 
-    accessWidener("$modid.accesswidener")
+    accessWidener("${modId()}.accesswidener")
 }
 
 dependencies {
@@ -68,7 +62,7 @@ tasks {
     }
 
     withType<KotlinCompile> {
-        kotlinOptions.jvmTarget = targetJavaVersion.toString()
+        compilerOptions.jvmTarget = JvmTarget.JVM_21
     }
 
     java {
@@ -88,7 +82,7 @@ uploadConfig {
     modrinthId = modrinth_id
     curseId = curse_id
 
-    changeLog = "- 1.20.6 version of 1.1.0"
+    changeLog = "- 21 update"
 
     // FabricApi
     modrinthDependency("P7dR8mSH", uploadConfig.REQUIRED)
