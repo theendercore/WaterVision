@@ -1,5 +1,7 @@
 projectTitle = "Water Vision"
 modId = "water_vision"
+modVersion = "1.3.0"
+group = "com.theendercore"
 githubRepo = "theendercore/WaterVision"
 discordServerInviteId = "KZ5Q364hEg"
 authors = [ "TheEnderCore" ]
@@ -7,7 +9,7 @@ majorMinecraftVersion = "1.21"
 minecraftVersion = "1.21"
 fabricLoaderVersion = "0.15.11"
 fabricApiVersion = "0.100.1+1.21"
-fabricLangKotlinVersion = "1.11.0+kotlin.2.0.0"
+fabricLangKotlinVersion = "1.13.2+kotlin.2.1.20"
 license = "MIT"
 modules = [ ]
 modDescription = "See Better Under da Water!"
@@ -25,4 +27,4 @@ disableKotlin = false
     # MOJYARN: Yarn layered on top of the official Mojang mappings
     # CUSTOM: Custom mapping jar. Uses mappings version as file location
     type = "QUILT"
-    version = "1.21+build.2"
+    version = "1.21+build.3"

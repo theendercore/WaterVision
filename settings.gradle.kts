@@ -1,4 +1,3 @@
-rootProject.name = "WaterVision"
 pluginManagement {
     repositories {
         maven("https://maven.fabricmc.net/") { name = "Fabric" }
@@ -9,9 +8,5 @@ pluginManagement {
     }
 }
 dependencyResolutionManagement {
-    versionCatalogs {
-        create("libs") {
-            from(files("libs.versions.toml"))
-        }
-    }
+    versionCatalogs { create("libs") { from(files("libs.versions.toml")) } }
 }

@@ -13,13 +13,6 @@ plugins {
     alias(libs.plugins.iridium.upload)
 }
 
-group = property("maven_group")!!
-version = property("mod_version")!!
-base.archivesName.set(modSettings.modId())
-
-val modrinth_id: String? by project
-val curse_id: String? by project
-
 repositories {
     maven("https://teamvoided.org/releases")
     maven("https://maven.isxander.dev/releases") { name = "Xander Maven" }
@@ -49,7 +42,7 @@ loom {
             client()
             ideConfigGenerated(true)
             runDir("run")
-            programArgs("--quickPlaySingleplayer", "test")
+            programArgs("--quickPlaySingleplayer", "test", "--username", "Dev")
         }
     }
 }
@@ -79,8 +72,8 @@ publishScript {
 
 uploadConfig {
 //    debugMode = true
-    modrinthId = modrinth_id
-    curseId = curse_id
+    modrinthId = "CXryw0YT"
+    curseId = "890050"
 
     changeLog = "- 21 update"
 
