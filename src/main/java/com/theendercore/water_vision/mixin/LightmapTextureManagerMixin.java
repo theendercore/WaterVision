@@ -19,7 +19,7 @@ public class LightmapTextureManagerMixin {
     @Shadow
     private MinecraftClient client;
     @Unique
-    int waterTicks = 0;
+    int water_vision$waterTicks = 0;
 
     @ModifyVariable(method = "update", at = @At("STORE"), ordinal = 6)
     private float updateLightning(float initValue, @Local(ordinal = 0, argsOnly = true) float ticksDelta) {
@@ -27,12 +27,10 @@ public class LightmapTextureManagerMixin {
             boolean isSubmerged = client.player.isSubmergedInWater();
             if (config().enableTransition) {
                 float scale = (config().transitionMultiplier * 100);
-                if (isSubmerged && waterTicks < scale) waterTicks++;
-                else if (!isSubmerged && waterTicks > 0)
-                    waterTicks -= Math.min(waterTicks, config().transitionLeaveMultiplier);
-
-//                client.player.sendMessage(Text.of("Value : " + waterTicks + "/" + scale), true);
-                return Math.min(waterTicks / scale, 1f);
+                if (isSubmerged && water_vision$waterTicks < scale) water_vision$waterTicks++;
+                else if (!isSubmerged && water_vision$waterTicks > 0)
+                    water_vision$waterTicks -= Math.min(water_vision$waterTicks, config().transitionLeaveMultiplier);
+                return Math.min(water_vision$waterTicks / scale, 1f);
             } else if (isSubmerged) return 1f;
         }
         return initValue;
