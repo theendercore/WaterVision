@@ -3,8 +3,8 @@ kotlin = "2.1.20"
 fabric-loom = "1.10-SNAPSHOT"
 iridium = "3.4.0"
 
-fzzy-config = "0.6.7+1.21"
-modmenu = "11.0.0-beta.1"
+fzzy-config = "0.6.9+1.21.3"
+modmenu = "13.0.3"
 
 [libraries]
 fzzy-config = { module = "me.fzzyhmstrs:fzzy_config", version.ref = "fzzy-config" }
