@@ -75,7 +75,7 @@ uploadConfig {
     modrinthId = "CXryw0YT"
     curseId = "890050"
 
-    changeLog = "- 21 update"
+    changeLog = " - switched to fzzy config"
 
     // FabricApi
     modrinthDependency("P7dR8mSH", uploadConfig.REQUIRED)
@@ -83,7 +83,7 @@ uploadConfig {
     // Fabric Language Kotlin
     modrinthDependency("Ha28R6CL", uploadConfig.REQUIRED)
     curseDependency("fabric-language-kotlin", uploadConfig.REQUIRED)
-    //YACL
-    modrinthDependency("1eAoo2KR", uploadConfig.REQUIRED)
-    curseDependency("yacl", uploadConfig.REQUIRED)
+    //Fzzy
+    modrinthDependency("hYykXjDp", uploadConfig.REQUIRED)
+    curseDependency("fzzy-config", uploadConfig.REQUIRED)
 }
