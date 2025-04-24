@@ -10,10 +10,10 @@ object WaterVision {
     const val MODID = "water_vision"
 
     @JvmField
-    val LOGGER: Logger = LoggerFactory.getLogger(MODID)
+    val log: Logger = LoggerFactory.getLogger(MODID)
 
     fun clientInit() {
-        LOGGER.info("Water Blub Blub")
+        log.info("Water Blub Blub")
     }
 
     fun id(path: String): Identifier = Identifier.of(MODID, path)
