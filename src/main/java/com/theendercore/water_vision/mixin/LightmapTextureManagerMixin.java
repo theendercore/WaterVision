@@ -23,13 +23,13 @@ public class LightmapTextureManagerMixin {
 
     @ModifyVariable(method = "update", at = @At("STORE"), ordinal = 6)
     private float updateLightning(float initValue, @Local(ordinal = 0, argsOnly = true) float ticksDelta) {
-        if (config().enable && client.player != null && !hasEffects()) {
+        if (config.enable && client.player != null && !hasEffects()) {
             boolean isSubmerged = client.player.isSubmergedInWater();
-            if (config().enableTransition) {
-                float scale = (config().transitionMultiplier * 100);
+            if (config.enableTransition) {
+                float scale = (config.transitionMultiplier.get() * 100);
                 if (isSubmerged && water_vision$waterTicks < scale) water_vision$waterTicks++;
                 else if (!isSubmerged && water_vision$waterTicks > 0)
-                    water_vision$waterTicks -= Math.min(water_vision$waterTicks, config().transitionLeaveMultiplier);
+                    water_vision$waterTicks -= Math.min(water_vision$waterTicks, config.transitionLeaveMultiplier.get());
                 return Math.min(water_vision$waterTicks / scale, 1f);
             } else if (isSubmerged) return 1f;
         }

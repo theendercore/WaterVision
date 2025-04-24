@@ -15,25 +15,25 @@ plugins {
 
 repositories {
     maven("https://teamvoided.org/releases")
-    maven("https://maven.isxander.dev/releases") { name = "Xander Maven" }
+    maven("https://maven.fzzyhmstrs.me/") { name = "FzzyMaven" }
     maven("https://maven.terraformersmc.com/") { name = "Terraformers" }
     mavenCentral()
 }
 
 modSettings {
     entrypoint("client", "com.theendercore.water_vision.WaterVision::clientInit")
-    entrypoint("modmenu", "com.theendercore.water_vision.config.ModMenuCompat")
     mixinFile("${modId()}.mixins.json")
-    dependency("yet_another_config_lib_v3", "*")
+    dependency("fzzy_config", "*")
 
 //    accessWidener("${modId()}.accesswidener")
 }
 
 dependencies {
     modImplementation(fileTree("libs"))
-    modImplementation(libs.yacl)
-    modImplementation(libs.modmenu)
+//    modImplementation(libs.yacl)
+    modImplementation(libs.fzzy.config)
 
+    modImplementation(libs.modmenu)
 }
 
 loom {

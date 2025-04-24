@@ -1,6 +1,7 @@
 package com.theendercore.water_vision
 
-import com.theendercore.water_vision.config.WaterVisionConfig
+import me.fzzyhmstrs.fzzy_config.api.ConfigApi
+import me.fzzyhmstrs.fzzy_config.api.RegisterType
 import net.minecraft.util.Identifier
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -8,7 +9,8 @@ import org.slf4j.LoggerFactory
 @Suppress("unused")
 object WaterVision {
     const val MODID = "water_vision"
-
+    @JvmField
+    var config = ConfigApi.registerAndLoadConfig(::WaterVisionConfig, RegisterType.CLIENT)
     @JvmField
     val log: Logger = LoggerFactory.getLogger(MODID)
 
@@ -17,6 +19,4 @@ object WaterVision {
     }
 
     fun id(path: String): Identifier = Identifier.of(MODID, path)
-    @JvmStatic
-    fun config(): WaterVisionConfig = WaterVisionConfig.INSTANCE.instance()
 }

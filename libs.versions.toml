@@ -3,11 +3,11 @@ kotlin = "2.1.20"
 fabric-loom = "1.10-SNAPSHOT"
 iridium = "3.4.0"
 
-yacl = "3.5.0+1.21-fabric"
+fzzy-config = "0.6.7+1.21"
 modmenu = "11.0.0-beta.1"
 
 [libraries]
-yacl = { module = "dev.isxander:yet-another-config-lib", version.ref = "yacl" }
+fzzy-config = { module = "me.fzzyhmstrs:fzzy_config", version.ref = "fzzy-config" }
 modmenu = { module = "com.terraformersmc:modmenu", version.ref = "modmenu" }
 
 [plugins]
