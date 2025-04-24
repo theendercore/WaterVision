@@ -26,7 +26,7 @@ modSettings {
     mixinFile("${modId()}.mixins.json")
     dependency("yet_another_config_lib_v3", "*")
 
-    accessWidener("${modId()}.accesswidener")
+//    accessWidener("${modId()}.accesswidener")
 }
 
 dependencies {
