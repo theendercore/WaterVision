@@ -1,6 +1,6 @@
 projectTitle = "Water Vision"
 modId = "water_vision"
-modVersion = "1.3.0"
+modVersion = "1.5.0+1.21.1"
 group = "com.theendercore"
 githubRepo = "theendercore/WaterVision"
 discordServerInviteId = "KZ5Q364hEg"
@@ -15,7 +15,7 @@ modules = [ ]
 modDescription = "See Better Under da Water!"
 # Modmenu badges, values can be: [ library, deprecated ]
 badges = [ ]
-disableKotlin = false
+disableKotlin = true
 
 [mappings]
     # You have 7 mapping types

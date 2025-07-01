@@ -21,16 +21,13 @@ repositories {
 }
 
 modSettings {
-    entrypoint("client", "com.theendercore.water_vision.WaterVision::clientInit")
+    entrypoint("client", "com.theendercore.water_vision.WaterVision")
     mixinFile("${modId()}.mixins.json")
     dependency("fzzy_config", "*")
-
-//    accessWidener("${modId()}.accesswidener")
 }
 
 dependencies {
     modImplementation(fileTree("libs"))
-//    modImplementation(libs.yacl)
     modImplementation(libs.fzzy.config)
 
     modImplementation(libs.modmenu)
@@ -81,8 +78,8 @@ uploadConfig {
     modrinthDependency("P7dR8mSH", uploadConfig.REQUIRED)
     curseDependency("fabric-api", uploadConfig.REQUIRED)
     // Fabric Language Kotlin
-    modrinthDependency("Ha28R6CL", uploadConfig.REQUIRED)
-    curseDependency("fabric-language-kotlin", uploadConfig.REQUIRED)
+//    modrinthDependency("Ha28R6CL", uploadConfig.REQUIRED)
+//    curseDependency("fabric-language-kotlin", uploadConfig.REQUIRED)
     //Fzzy
     modrinthDependency("hYykXjDp", uploadConfig.REQUIRED)
     curseDependency("fzzy-config", uploadConfig.REQUIRED)
