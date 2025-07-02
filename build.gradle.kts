@@ -72,7 +72,7 @@ uploadConfig {
     modrinthId = "CXryw0YT"
     curseId = "890050"
 
-    changeLog = " - removed kotlin"
+    changeLog = " - 1.21.6-7 port"
 
     // FabricApi
     modrinthDependency("P7dR8mSH", uploadConfig.REQUIRED)
