@@ -5,7 +5,7 @@
   "compatibilityLevel": "JAVA_21",
   "client": [
     "BackgroundRendererMixin",
-    "LightmapTextureManagerMixin"
+    "LightTextureMixin"
   ],
   "injectors": {
     "defaultRequire": 1

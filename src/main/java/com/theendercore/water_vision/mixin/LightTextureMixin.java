@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import static com.theendercore.water_vision.WaterVision.config;
 
 @Mixin(LightTexture.class)
-public class LightmapTextureManagerMixin {
+public class LightTextureMixin {
     @Final
     @Shadow
     private Minecraft minecraft;
