@@ -1,2 +1,2 @@
-- 1.21.11 port
-- Added lava support
+- 26.1 port
+- Underwater light now gets tinted to be light blue (Can chang the color or disable it with config)

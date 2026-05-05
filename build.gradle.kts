@@ -30,16 +30,15 @@ repositories {
 }
 
 dependencies {
-    modImplementation(fileTree("libs"))
+    implementation(fileTree("libs"))
     minecraft(libs.minecraft)
-    mappings(loom.officialMojangMappings())
     // Dependencies
-    modImplementation(libs.fabric.loader)
-    modImplementation(libs.fabric.api)
-    modImplementation(libs.fzzy.config)
+    implementation(libs.fabric.loader)
+    implementation(libs.fabric.api)
+    implementation(libs.fzzy.config)
     // Compatibility
     // Runtime
-    modImplementation(libs.modmenu)
+    implementation(libs.modmenu)
 }
 
 val username = "vDev"
@@ -119,7 +118,7 @@ uploadScript {
 
     version += libs.versions.minecraft.get()
     versionName = "${iridium.modName()} ${iridium.modVersion}"
-    jarTask = tasks.remapJar.get()
+    jarTask = tasks.jar.get()
 
     dependency("P7dR8mSH", "fabric-api")
     dependency("hYykXjDp", "fzzy-config")
