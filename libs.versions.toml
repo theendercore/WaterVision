@@ -1,19 +1,32 @@
 [versions]
-kotlin = "2.1.20"
-fabric-loom = "1.10-SNAPSHOT"
-iridium = "3.4.0"
-
-fzzy-config = "0.7.0+1.21.6"
-modmenu = "15.0.0-beta.3"
+    java = "21"
+    kotlin = "2.3.0"
+    fabric_loom = "1.16-SNAPSHOT"
+    iridium = "4.0.0"
+    # Dependencies
+    minecraft = "1.21.11"
+    fabric_loader = "0.19.2"
+    fabric_api = "0.141.3+1.21.11"
+    fabric_kotlin = "1.13.8+kotlin.2.3.0"
+    fzzy_config = "0.7.6+1.21.11"
+    # Compatibility
+    # Runtime
+    modmenu = "17.0.0"
 
 [libraries]
-fzzy-config = { module = "me.fzzyhmstrs:fzzy_config", version.ref = "fzzy-config" }
-modmenu = { module = "com.terraformersmc:modmenu", version.ref = "modmenu" }
+    # Dependencies
+    minecraft = { module = "com.mojang:minecraft", version.ref = "minecraft" }
+    fabric_loader = { module = "net.fabricmc:fabric-loader", version.ref = "fabric_loader" }
+    fabric_api = { module = "net.fabricmc.fabric-api:fabric-api", version.ref = "fabric_api" }
+    fzzy-config = { module = "me.fzzyhmstrs:fzzy_config", version.ref = "fzzy_config" }
+    # Compatibility
+    # Runtime
+    modmenu = { module = "com.terraformersmc:modmenu", version.ref = "modmenu" }
 
 [plugins]
-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
-kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-fabric-loom = { id = "fabric-loom", version.ref = "fabric-loom" }
-iridium = { id = "org.teamvoided.iridium", version.ref = "iridium"}
-iridium-publish = { id = "iridium.project.publish-script", version.ref = "iridium"}
-iridium-upload = { id = "iridium.mod.upload-script", version.ref = "iridium" }
+    kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+    fabric-loom = { id = "net.fabricmc.fabric-loom-remap", version.ref = "fabric_loom" }
+    iridium = { id = "org.teamvoided.iridium", version.ref = "iridium" }
+    iridium-publish = { id = "iridium.project.publish-script", version.ref = "iridium" }
+    iridium-upload = { id = "iridium.mod.upload-script", version.ref = "iridium" }
+

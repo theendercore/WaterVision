@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "${mod_id}",
+  "version": "${mod_version}",
+  "name": "${mod_name}",
+  "description": "${mod_description}",
+  "authors": [ "${authors}" ],
+  "entrypoints": {
+    "client": [
+      {
+        "adapter": "kotlin",
+        "value": "com.theendercore.water_vision.WaterVision"
+      }
+    ]
+  },
+  "mixins": [
+    {
+      "config": "water_vision.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "java": ">=${java}",
+    "minecraft": ">=${min_minecraft} <${max_minecraft}",
+    "fabricloader": "*",
+    "fabric-api": "*",
+    "fzzy_config": ">=${fzzy_config}"
+  },
+  "contact": {
+    "homepage": "https://github.com/${github_repo}",
+    "issues": "https://github.com/${github_repo}/issues",
+    "sources": "https://github.com/${github_repo}",
+    "discord": "${discord_invite}"
+  },
+  "license": "${license}",
+  "icon": "assets/water_vision/icon.png"
+}

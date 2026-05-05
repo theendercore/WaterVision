@@ -33,4 +33,6 @@ public class WaterVisionConfig extends Config {
 
     @ConfigGroup.Pop
     public ValidatedInt transitionLeaveMultiplier = Companion.withIncrement(new ValidatedInt(3, 32, 1, WidgetType.TEXTBOX_WITH_BUTTONS), 1);
+
+    public boolean enableForLava = true;
 }

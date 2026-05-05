@@ -5,82 +5,122 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 
 plugins {
-    alias(libs.plugins.fabric.loom)
     alias(libs.plugins.kotlin.jvm)
-    alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.iridium)
     alias(libs.plugins.iridium.publish)
     alias(libs.plugins.iridium.upload)
+    alias(libs.plugins.fabric.loom)
 }
 
 repositories {
-    maven("https://teamvoided.org/releases")
-    maven("https://maven.fzzyhmstrs.me/") { name = "FzzyMaven" }
-    maven("https://maven.terraformersmc.com/") { name = "Terraformers" }
+    maven("https://maven.fabricmc.net/")
+    maven("https://teamvoided.org/releases") { content { includeGroup("org.teamvoided") } }
+    maven("https://teamvoided.org/snapshots") { content { includeGroup("org.teamvoided") } }
+    maven("https://maven.fzzyhmstrs.me/") { name = "FzzyMaven"; content { includeGroup("me.fzzyhmstrs") } }
+    maven("https://maven.terraformersmc.com/") {
+        name = "Terraformers"
+        content {
+            includeGroup("com.terraformersmc")
+            includeGroup("dev.emi")
+        }
+    }
+    maven("https://api.modrinth.com/maven") { content { includeGroup("maven.modrinth") } }
+    mavenLocal()
     mavenCentral()
-}
-
-modSettings {
-    entrypoint("client", "com.theendercore.water_vision.WaterVision")
-    mixinFile("${modId()}.mixins.json")
-    dependency("fzzy_config", "*")
 }
 
 dependencies {
     modImplementation(fileTree("libs"))
+    minecraft(libs.minecraft)
+    mappings(loom.officialMojangMappings())
+    // Dependencies
+    modImplementation(libs.fabric.loader)
+    modImplementation(libs.fabric.api)
     modImplementation(libs.fzzy.config)
-
+    // Compatibility
+    // Runtime
     modImplementation(libs.modmenu)
 }
 
+val username = "vDev"
+val uuid = iridium.fetchUUID(username) // Dev & vDev will always be null
+
 loom {
+    mods {
+        register(iridium.modId) {
+            sourceSet(sourceSets.main.get())
+        }
+    }
     runs {
+        named("client") {
+            programArgs("--username", username)
+            uuid?.let { programArgs("--uuid", it) }
+        }
+
+        create("randomClient") {
+            client()
+            runDir("run")
+            ideConfigGenerated(true)
+        }
+
         create("TestWorld") {
             client()
-            ideConfigGenerated(true)
             runDir("run")
-            programArgs("--quickPlaySingleplayer", "test", "--username", "Dev")
+            ideConfigGenerated(true)
+            programArgs("--quickPlaySingleplayer", "test", "--username", username)
+            uuid?.let { programArgs("--uuid", it) }
         }
     }
 }
 
 tasks {
-    val targetJavaVersion = 21
+    val javaVersion = libs.versions.java.get()
     withType<JavaCompile> {
         options.encoding = "UTF-8"
-        options.release.set(targetJavaVersion)
+        options.release.set(javaVersion.toInt())
     }
 
-    withType<KotlinCompile> {
-        compilerOptions.jvmTarget = JvmTarget.JVM_21
+    withType<KotlinCompile>().all {
+        compilerOptions.jvmTarget = JvmTarget.fromTarget(javaVersion)
     }
 
     java {
-        toolchain.languageVersion.set(JavaLanguageVersion.of(JavaVersion.toVersion(targetJavaVersion).toString()))
+        toolchain.languageVersion.set(JavaLanguageVersion.of(JavaVersion.toVersion(javaVersion).toString()))
         withSourcesJar()
+    }
+
+    sourceSets.forEach { set ->
+        named<ProcessResources>(set.processResourcesTaskName) {
+            var expandProps = iridium.props.toMutableMap()
+            iridium.appendLibsVersionProps(expandProps, File("libs.versions.toml"))
+            filesMatching(
+                listOf("pack.mcmeta", "fabric.mod.json", "META-INF/mods.toml", "META-INF/neoforge.mods.toml")
+            ) {
+                expand(expandProps)
+            }
+            inputs.properties(expandProps)
+        }
     }
 }
 
 publishScript {
     releaseRepository("TeamVoided", "https://maven.teamvoided.org/releases")
-    publication(modSettings.modId(), false)
-    publishSources(true)
+    publication(iridium.modId, isSnapshot = false)
+    publishSources = true
 }
 
-uploadConfig {
-//    debugMode = true
+uploadScript {
+    debugMode = false
+
     modrinthId = "CXryw0YT"
     curseId = "890050"
 
-    changeLog = " - 1.21.6-7 port"
+    changelog = File("changelog.md").readText()
 
-    // FabricApi
-    modrinthDependency("P7dR8mSH", uploadConfig.REQUIRED)
-    curseDependency("fabric-api", uploadConfig.REQUIRED)
-    // Fabric Language Kotlin
-//    modrinthDependency("Ha28R6CL", uploadConfig.REQUIRED)
-//    curseDependency("fabric-language-kotlin", uploadConfig.REQUIRED)
-    //Fzzy
-    modrinthDependency("hYykXjDp", uploadConfig.REQUIRED)
-    curseDependency("fzzy-config", uploadConfig.REQUIRED)
+    version += libs.versions.minecraft.get()
+    versionName = "${iridium.modName()} ${iridium.modVersion}"
+    jarTask = tasks.remapJar.get()
+
+    dependency("P7dR8mSH", "fabric-api")
+    dependency("hYykXjDp", "fzzy-config")
 }
