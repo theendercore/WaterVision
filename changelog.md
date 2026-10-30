@@ -1,2 +1,2 @@
-- 26.1 port
-- Underwater light now gets tinted to be light blue (Can change the color or disable it with config)
+- 26.x update 
+- Clean up some of the code

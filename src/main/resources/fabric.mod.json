@@ -21,7 +21,7 @@
   ],
   "depends": {
     "java": ">=${java}",
-    "minecraft": ">=${min_minecraft} <${max_minecraft}",
+    "minecraft": "${version_range}",
     "fabricloader": "*",
     "fabric-api": "*",
     "fzzy_config": ">=${fzzy_config}"

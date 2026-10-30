@@ -1,11 +1,10 @@
 mod_name = "Water Vision"
 mod_id = "water_vision"
 mod_group = "com.theendercore"
-mod_version = "1.6.0"
+mod_version = "1.7.0+26.x"
 mod_description = "See Better Under da Water!"
 github_repo = "theendercore/WaterVision"
 discord_invite = "https://discord.gg/KZ5Q364hEg"
 authors = [ "TheEnderCore" ]
 license = "MIT"
-min_minecraft = "26.1.2" # Inclusive
-max_minecraft = "26.2" # Exclusive
+version_range = ">=26.1.2 <27.1"
