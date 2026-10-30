@@ -15,14 +15,18 @@ import static com.theendercore.water_vision.WaterVision.config;
 
 @Mixin({WaterFogEnvironment.class, LavaFogEnvironment.class})
 public abstract class BackgroundRendererMixin {
+
     @Inject(method = "setupFog", at = @At("TAIL"))
     void modifyFog(FogData fogData, Camera camera, ClientLevel clientLevel, float viewDistance, DeltaTracker deltaTracker, CallbackInfo ci) {
         //noinspection ConstantValue
-        if (!config.enableForLava &&  ((Object) this) instanceof LavaFogEnvironment) return;
+        if (!config.enableForLava && ((Object) this) instanceof LavaFogEnvironment) {
+            return;
+        }
         fogData.environmentalStart = config.scaleClose;
         fogData.environmentalEnd = config.scaleFar * viewDistance * 0.01f;
 
         fogData.skyEnd = fogData.environmentalEnd;
         fogData.cloudEnd = fogData.environmentalEnd;
     }
+
 }

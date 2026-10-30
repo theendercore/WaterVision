@@ -16,6 +16,7 @@ import static com.theendercore.water_vision.WaterVision.config;
 
 @Mixin(LightmapRenderStateExtractor.class)
 public class LightmapRenderStateExtractorMixin {
+
     @Final
     @Shadow
     private Minecraft minecraft;
@@ -24,7 +25,9 @@ public class LightmapRenderStateExtractorMixin {
 
     @Inject(method = "tick", at = @At("TAIL"))
     void addTicking(CallbackInfo ci) {
-        if (!config.enableTransition || minecraft.player == null) return;
+        if (!config.enableTransition || minecraft.player == null) {
+            return;
+        }
 
         boolean isSubmerged = minecraft.player.isUnderWater();
         float scale = (config.transitionMultiplier.get() * 100);
@@ -60,4 +63,5 @@ public class LightmapRenderStateExtractorMixin {
         assert minecraft.player != null;
         return minecraft.player.hasEffect(MobEffects.NIGHT_VISION) || minecraft.player.hasEffect(MobEffects.CONDUIT_POWER);
     }
+
 }

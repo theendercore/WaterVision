@@ -14,6 +14,7 @@ import static me.fzzyhmstrs.fzzy_config.validation.number.ValidatedNumber.Compan
 
 
 public class WaterVisionConfig extends Config {
+
     public WaterVisionConfig() {
         super(WaterVision.id(WaterVision.MODID));
     }
@@ -51,4 +52,5 @@ public class WaterVisionConfig extends Config {
                 underwaterLightTint.b() / 255f
         );
     }
+
 }
